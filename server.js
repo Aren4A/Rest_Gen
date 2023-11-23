@@ -46,6 +46,17 @@ app.get('/books/:id', async (request, response) => {
     }     
 });
 
+app.delete("/books/:id", async (request, response) => {
+    const { id } = request.params;
+
+    const testing = await prisma.books.delete({
+        where: {
+            id: Number(id),
+        }
+    });
+});
+
+
 const PORT = 5500;
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
